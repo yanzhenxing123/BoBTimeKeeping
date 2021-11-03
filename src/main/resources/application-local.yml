@@ -1,11 +1,10 @@
 spring:
+  profiles: local
   datasource:
-    url: jdbc:mysql://8.136.13.232:3306/example?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://8.136.13.232:3306/cunzhao?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
     username: root
     password: 209243
-  config:
-    activate:
-      on-profile: local
+
 
 logging:
   config: classpath:logback-local.xml

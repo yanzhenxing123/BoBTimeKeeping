@@ -10,4 +10,9 @@ class CunzhaoApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void testMapper() {
+
+        System.out.println("hello world");
+    }
 }
