@@ -39,4 +39,6 @@ HELP.md
 ### VS Code ###
 .vscode/
 
-/logs/
+
+### logs ###
+logs/
