@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/example?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 209243
+  config:
+    activate:
+      on-profile: prod
+logging:
+  config: classpath:logback-prod.xml
+server:
+  port: 8080

@@ -1,0 +1,9 @@
+2021-11-03 14:44:02.226 INFO  [][] [restartedMain] t.y.cunzhao.CunzhaoApplication:55 - Starting CunzhaoApplication using Java 1.8.0_301 on yanzhenxingdeMacBook-Pro.local with PID 70498 (/Users/yanzx/IdeaProjects/cunzhao/target/classes started by yanzx in /Users/yanzx/IdeaProjects/cunzhao)
+2021-11-03 14:44:02.227 INFO  [][] [restartedMain] t.y.cunzhao.CunzhaoApplication:663 - The following profiles are active: local
+2021-11-03 14:44:04.232 INFO  [][] [restartedMain] t.y.cunzhao.CunzhaoApplication:61 - Started CunzhaoApplication in 2.546 seconds (JVM running for 3.375)
+2021-11-03 14:53:36.007 INFO  [][] [restartedMain] t.y.cunzhao.CunzhaoApplication:55 - Starting CunzhaoApplication using Java 1.8.0_301 on yanzhenxingdeMacBook-Pro.local with PID 70586 (/Users/yanzx/IdeaProjects/cunzhao/target/classes started by yanzx in /Users/yanzx/IdeaProjects/cunzhao)
+2021-11-03 14:53:36.009 INFO  [][] [restartedMain] t.y.cunzhao.CunzhaoApplication:663 - The following profiles are active: local
+2021-11-03 14:53:38.153 INFO  [][] [restartedMain] t.y.cunzhao.CunzhaoApplication:61 - Started CunzhaoApplication in 2.692 seconds (JVM running for 3.602)
+2021-11-03 14:54:09.471 INFO  [][] [restartedMain] t.y.cunzhao.CunzhaoApplication:55 - Starting CunzhaoApplication using Java 1.8.0_301 on yanzhenxingdeMacBook-Pro.local with PID 70594 (/Users/yanzx/IdeaProjects/cunzhao/target/classes started by yanzx in /Users/yanzx/IdeaProjects/cunzhao)
+2021-11-03 14:54:09.472 INFO  [][] [restartedMain] t.y.cunzhao.CunzhaoApplication:663 - The following profiles are active: local
+2021-11-03 14:54:11.171 INFO  [][] [restartedMain] t.y.cunzhao.CunzhaoApplication:61 - Started CunzhaoApplication in 2.148 seconds (JVM running for 2.758)
