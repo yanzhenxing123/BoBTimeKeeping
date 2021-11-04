@@ -42,3 +42,6 @@ HELP.md
 
 ### logs ###
 logs/
+
+### docker ###
+src/main/docker/*.jar
