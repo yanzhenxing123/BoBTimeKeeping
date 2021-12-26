@@ -1,18 +1,18 @@
-package top.yanzx.cunzhao;
+// package top.yanzx.cunzhao;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class CunzhaoApplicationTests {
+// @SpringBootTest
+// class CunzhaoApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+//     @Test
+//     void contextLoads() {
+//     }
 
-    @Test
-    void testMapper() {
+//     @Test
+//     void testMapper() {
 
-        System.out.println("hello world");
-    }
-}
+//         System.out.println("hello world");
+//     }
+// }
