@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import top.yanzx.cunzhao.config.system.zhenziSMS;
 import top.yanzx.cunzhao.util.CommonUtil;
 import top.yanzx.cunzhao.util.IpUtil;
+import top.yanzx.cunzhao.util.RedisUtil;
 import top.yanzx.cunzhao.util.constants.ErrorEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,9 @@ public class SmsController {
 
     @Autowired
     private zhenziSMS sms;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     private final Map<String, String> codeMap = new HashMap<>();
 
@@ -60,26 +64,7 @@ public class SmsController {
 
     @PostMapping("/auth")
     public JSONObject auth(@RequestBody JSONObject requestJson, HttpServletRequest request) throws Exception {
-        JSONObject info = new JSONObject();
-        String ip = IpUtil.getIpAddr(request);
-        CommonUtil.hasAllRequired(requestJson, "phone_number");
-        String phoneNumber = requestJson.getString("phone_number");
-        Map<String, Object> codeInfoMap = sms.sendMessage(phoneNumber, ip);
-        if ((boolean) codeInfoMap.get("success")) {
-            info.put("state", "发送成功");
-            info.put("code", codeInfoMap.get("code"));
-            info.put("expire_minute", codeInfoMap.get("expireMinute"));
-            info.put("phone_number", codeInfoMap.get("number"));
-            info.put("client_ip", codeInfoMap.get("clientIp"));
-            info.put("message_id", codeInfoMap.get("messageId"));
-        } else {
-            return CommonUtil.errorJson(ErrorEnum.E_40001);
-        }
-        return CommonUtil.successJson(info);
+        redisUtil.set("a", "a");
+        return CommonUtil.successJson();
     }
-
-
-
-
-
 }
