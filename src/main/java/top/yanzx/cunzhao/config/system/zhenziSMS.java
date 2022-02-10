@@ -90,7 +90,8 @@ public class zhenziSMS {
     public Map<String, Object> sendMessage(String phoneNumber, String clientIp) throws Exception {
         Map<String, Object> params = createVerificationCode();
         //发送手机目标（number字段不可修改）
-        params.put("phoneNumber", phoneNumber);
+        params.put("number", phoneNumber);
+
         //防止一个客户端多次刷验证码，防刷专用,这个clientIp只是个防刷标记，
         // 不一定是客户端ip，也可以是客户端登录的账号，或者能鉴权的属性
         if (StringUtils.isNotBlank(clientIp)) {
