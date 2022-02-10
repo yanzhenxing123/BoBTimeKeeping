@@ -49,7 +49,7 @@ public class SmsController {
             info.put("state", "发送成功");
             info.put("code", codeInfoMap.get("code"));
             info.put("expire_minute", codeInfoMap.get("expireMinute"));
-            info.put("phone_number", codeInfoMap.get("phoneNumber"));
+            info.put("phone_number", codeInfoMap.get("number"));
             info.put("client_ip", codeInfoMap.get("clientIp"));
             info.put("message_id", codeInfoMap.get("messageId"));
         } else {
@@ -57,6 +57,29 @@ public class SmsController {
         }
         return CommonUtil.successJson(info);
     }
+
+    @PostMapping("/auth")
+    public JSONObject auth(@RequestBody JSONObject requestJson, HttpServletRequest request) throws Exception {
+        JSONObject info = new JSONObject();
+        String ip = IpUtil.getIpAddr(request);
+        CommonUtil.hasAllRequired(requestJson, "phone_number");
+        String phoneNumber = requestJson.getString("phone_number");
+        Map<String, Object> codeInfoMap = sms.sendMessage(phoneNumber, ip);
+        if ((boolean) codeInfoMap.get("success")) {
+            info.put("state", "发送成功");
+            info.put("code", codeInfoMap.get("code"));
+            info.put("expire_minute", codeInfoMap.get("expireMinute"));
+            info.put("phone_number", codeInfoMap.get("number"));
+            info.put("client_ip", codeInfoMap.get("clientIp"));
+            info.put("message_id", codeInfoMap.get("messageId"));
+        } else {
+            return CommonUtil.errorJson(ErrorEnum.E_40001);
+        }
+        return CommonUtil.successJson(info);
+    }
+
+
+
 
 
 }

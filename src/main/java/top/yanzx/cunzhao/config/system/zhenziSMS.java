@@ -77,12 +77,25 @@ public class zhenziSMS {
         //生成验证码
         int pow = (int) Math.pow(10, codeLength - 1);
         String verificationCode = String.valueOf((int) (Math.random() * 9 * pow + pow));
+
+        // 过期时间
+        String expireMinute = String.valueOf(timeOut);
+
+
         //随机生成messageId，验证验证码的时候，需要携带这个参数去取验证码
         String messageId = UUID.randomUUID().toString();
         map.put("messageId", messageId);
         //两个参数分别为验证码和过期时间
+
+        String[] templateParams = new String[2];
+        templateParams[0] = verificationCode;
+        templateParams[1] = expireMinute;
+
+        map.put("templateParams", templateParams);
+
+
         map.put("code", verificationCode);
-        map.put("expireMinute", String.valueOf(timeOut));
+        map.put("expireMinute", expireMinute);
         return map;
     }
 
@@ -97,6 +110,7 @@ public class zhenziSMS {
         if (StringUtils.isNotBlank(clientIp)) {
             params.put("clientIp", clientIp);
         }
+        params.put("clientIp", "127.0.0.1");
         String result = client.send(params);
         isSendSuccess success = JSONObject.parseObject(result, isSendSuccess.class);
         System.out.println(result);
