@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.zhenzi.sms.ZhenziSmsClient;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import top.yanzx.cunzhao.util.RedisUtil;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -53,6 +55,10 @@ public class zhenziSMS {
         return client;
     }
 
+
+    @Autowired
+    RedisUtil redisUtil;
+
     /**
      * @date: 2021/11/13 4:07 下午
      * @author: yanzx
@@ -96,6 +102,9 @@ public class zhenziSMS {
 
         map.put("code", verificationCode);
         map.put("expireMinute", expireMinute);
+
+        this.insertDataIntoRedis(messageId, verificationCode);
+
         return map;
     }
 
@@ -142,6 +151,11 @@ public class zhenziSMS {
         } else {
             return false;
         }
+    }
+
+
+    public boolean insertDataIntoRedis(String messageId, String code) {
+        return redisUtil.set(messageId, code, this.timeOut * 60);
     }
 
     //向榛子云发送验证码请求时候，榛子云返回的报文,code=0为成功

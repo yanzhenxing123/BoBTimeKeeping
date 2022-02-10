@@ -2,6 +2,7 @@ package top.yanzx.cunzhao.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import top.yanzx.cunzhao.service.LoginService;
+import top.yanzx.cunzhao.service.SmsService;
 import top.yanzx.cunzhao.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +22,16 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    @Autowired
+    private SmsService smsService;
+
     /**
      * 登录
      */
     @PostMapping("/auth")
     public JSONObject authLogin(@RequestBody JSONObject requestJson) {
-        CommonUtil.hasAllRequired(requestJson, "username,password");
+        CommonUtil.hasAllRequired(requestJson, "username,password,message_id,code");
+        smsService.authCode(requestJson);
         return loginService.authLogin(requestJson);
     }
 

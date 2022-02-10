@@ -2,6 +2,7 @@ package top.yanzx.cunzhao.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import top.yanzx.cunzhao.config.system.zhenziSMS;
+import top.yanzx.cunzhao.service.SmsService;
 import top.yanzx.cunzhao.util.CommonUtil;
 import top.yanzx.cunzhao.util.IpUtil;
 import top.yanzx.cunzhao.util.RedisUtil;
@@ -25,7 +26,9 @@ public class SmsController {
     private zhenziSMS sms;
 
     @Autowired
-    private RedisUtil redisUtil;
+    private SmsService smsService;
+
+
 
     private final Map<String, String> codeMap = new HashMap<>();
 
@@ -64,7 +67,8 @@ public class SmsController {
 
     @PostMapping("/auth")
     public JSONObject auth(@RequestBody JSONObject requestJson, HttpServletRequest request) throws Exception {
-        redisUtil.set("a", "a");
+        CommonUtil.hasAllRequired(requestJson, "message_id,code");
+        smsService.authCode(requestJson);
         return CommonUtil.successJson();
     }
 }
