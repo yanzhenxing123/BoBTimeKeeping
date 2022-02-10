@@ -18,6 +18,10 @@ public enum ErrorEnum {
 
     E_20011("20011", "登陆已过期,请重新登陆"),
 
+
+    // 短信信息
+    E_40001("40001", "短信发送失败"),
+
     E_90003("90003", "缺少必填参数");
 
     private final String errorCode;
@@ -27,6 +31,7 @@ public enum ErrorEnum {
     ErrorEnum(String errorCode, String errorMsg) {
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
+
     }
 
     public String getErrorCode() {
