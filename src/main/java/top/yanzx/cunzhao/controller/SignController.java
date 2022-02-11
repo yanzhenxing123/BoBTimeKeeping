@@ -7,6 +7,7 @@ import top.yanzx.cunzhao.config.annotation.RequiresPermissions;
 import top.yanzx.cunzhao.dao.SignDao;
 import top.yanzx.cunzhao.dto.session.SessionUserInfo;
 import top.yanzx.cunzhao.service.LoginService;
+import top.yanzx.cunzhao.service.SignService;
 import top.yanzx.cunzhao.service.SmsService;
 import top.yanzx.cunzhao.service.TokenService;
 import top.yanzx.cunzhao.util.CommonUtil;
@@ -25,53 +26,41 @@ import java.util.HashMap;
 @RequestMapping("/sign")
 public class SignController {
     @Autowired
-    private LoginService loginService;
-
-    @Autowired
-    private SmsService smsService;
-
-    @Autowired
     private TokenService tokenService;
 
-
     @Autowired
-    private SignDao signDao;
+    private SignService signService;
 
     /**
      * 签到
      */
-//    @RequiresPermissions("sign:add")
+    @RequiresPermissions("sign:add")
     @GetMapping("/create")
-    public JSONObject authLogin() {
+    public JSONObject createSign() {
         SessionUserInfo userInfo = tokenService.getUserInfo();
         int userId = userInfo.getUserId();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("userId", userId);
-
-        int isExist = signDao.queryExist(jsonObject);
-        if (isExist == 1) {
-            return CommonUtil.errorJson(ErrorEnum.E_50001);
-        }
-
-        int sign = signDao.createSign(jsonObject);
-        System.out.println(sign);
-        return CommonUtil.successJson();
+        return signService.createSign(jsonObject);
     }
 
 
-    //    @RequiresPermissions("sign:add")
+    @RequiresPermissions("sign:add")
     @GetMapping("/nums")
     public JSONObject signNums() {
+        /**
+         * 签到数量
+         * @author yanzx
+         * @date 2022/2/11
+         * @param []
+         * @return com.alibaba.fastjson.JSONObject
+         *
+         */
         SessionUserInfo userInfo = tokenService.getUserInfo();
         int userId = userInfo.getUserId();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("userId", userId);
-
-        int nums = signDao.signNums(jsonObject);
-
-        HashMap<String, Integer> info = new HashMap<>();
-        info.put("nums", nums);
-        return CommonUtil.successJson(info);
+        return signService.signNums(jsonObject);
     }
 
 }

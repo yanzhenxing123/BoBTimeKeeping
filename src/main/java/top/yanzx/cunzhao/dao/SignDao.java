@@ -22,6 +22,9 @@ public interface SignDao {
      */
     int createSign(JSONObject jsonObject);
 
+    /**
+     * 签到数量
+     */
     int signNums(JSONObject jsonObject);
 
 }
