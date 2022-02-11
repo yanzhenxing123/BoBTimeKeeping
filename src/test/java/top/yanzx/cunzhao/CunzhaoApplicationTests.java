@@ -13,6 +13,6 @@ import top.yanzx.cunzhao.util.RedisUtil;
 
      @Test
      void contextLoads(){
-         redisUtil.set("a", "b", 100);
+         redisUtil.set("a", "b");
      }
  }
