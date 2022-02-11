@@ -30,8 +30,9 @@ public class LoginController {
      */
     @PostMapping("/auth")
     public JSONObject authLogin(@RequestBody JSONObject requestJson) {
-        CommonUtil.hasAllRequired(requestJson, "username,password,message_id,code");
-        smsService.authCode(requestJson);
+//        CommonUtil.hasAllRequired(requestJson, "username,password,message_id,code");
+        CommonUtil.hasAllRequired(requestJson, "username,password");
+//        smsService.authCode(requestJson);
         return loginService.authLogin(requestJson);
     }
 

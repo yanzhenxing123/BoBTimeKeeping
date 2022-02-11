@@ -1,5 +1,6 @@
 package top.yanzx.cunzhao.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import top.yanzx.cunzhao.dao.UserDao;
 import top.yanzx.cunzhao.util.CommonUtil;
@@ -170,5 +171,24 @@ public class UserService {
         userDao.removeRole(jsonObject);
         userDao.removeRoleAllPermission(jsonObject);
         return CommonUtil.successJson();
+    }
+
+
+    /**
+     * 注册
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public JSONObject register(JSONObject jsonObject) {
+        // 默认角色为5
+        ArrayList<Integer> roleIds = new ArrayList<>();
+        roleIds.add(5);
+        jsonObject.put("roleIds", roleIds);
+        JSONObject res = this.addUser(jsonObject);
+        if (!res.get("code").equals("200")){
+            return res;
+        }
+        jsonObject.remove("message_id");
+        jsonObject.remove("code");
+        return jsonObject;
     }
 }

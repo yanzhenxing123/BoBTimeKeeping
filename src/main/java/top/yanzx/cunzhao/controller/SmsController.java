@@ -71,4 +71,5 @@ public class SmsController {
         smsService.authCode(requestJson);
         return CommonUtil.successJson();
     }
+
 }

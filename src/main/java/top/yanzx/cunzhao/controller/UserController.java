@@ -97,4 +97,10 @@ public class UserController {
         CommonUtil.hasAllRequired(requestJson, "roleId");
         return userService.deleteRole(requestJson);
     }
+
+    @PostMapping("/register")
+    public JSONObject register(@RequestBody JSONObject requestJson) {
+        CommonUtil.hasAllRequired(requestJson, "username,password,message_id,code");
+        return userService.register(requestJson);
+    }
 }
