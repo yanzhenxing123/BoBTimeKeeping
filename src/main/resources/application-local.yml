@@ -4,6 +4,8 @@ spring:
     url: jdbc:mysql://42.192.178.84:3306/cunzhao?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
     username: root
     password: 209243
+    driver-class-name: com.mysql.jdbc.Driver
+
 
 
 logging:

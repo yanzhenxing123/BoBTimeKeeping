@@ -19,6 +19,7 @@
     <properties>
         <java.version>1.8</java.version>
         <spring.shiro.version>1.7.1</spring.shiro.version>
+        <mysql-connector-java.version>5.1.38</mysql-connector-java.version>
     </properties>
     <dependencies>
 
@@ -52,7 +53,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <version>${mysql-connector-java.version}</version>
         </dependency>
 
         <!--    redis   -->
@@ -138,7 +139,7 @@
 
 
 
-<!--        测试-->
+        <!--        测试-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
