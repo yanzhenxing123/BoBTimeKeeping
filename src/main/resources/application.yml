@@ -26,7 +26,7 @@ sms:
   apiUrl: https://sms_developer.zhenzikj.com
   appId: 110317
   appSecret: d40f0cf5-70b4-40c9-93a1-4a9ec0484836
-  timeOut: 3
+  timeOut: 10
   codeLength: 4
   
   
