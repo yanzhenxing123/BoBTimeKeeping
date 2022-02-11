@@ -119,7 +119,7 @@ public class zhenziSMS {
         if (StringUtils.isNotBlank(clientIp)) {
             params.put("clientIp", clientIp);
         }
-        params.put("clientIp", "127.0.0.1");
+//        params.put("clientIp", "127.0.0.1");
         String result = client.send(params);
         isSendSuccess success = JSONObject.parseObject(result, isSendSuccess.class);
         System.out.println(result);
