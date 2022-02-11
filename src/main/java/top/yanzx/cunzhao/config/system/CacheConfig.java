@@ -2,6 +2,7 @@ package top.yanzx.cunzhao.config.system;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
+import org.springframework.beans.factory.annotation.Value;
 import top.yanzx.cunzhao.dto.session.SessionUserInfo;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -15,6 +16,10 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableCaching
 public class CacheConfig {
+
+    @Value("${cache.expireAfterAccess}")
+    //访问路径（个人开发者使用https://sms_developer.zhenzikj.com，企业开发者使用https://sms.zhenzikj.com）
+    private Integer expireAfterAccess;
 
     /**
      * 配置默认的缓存管理器
@@ -41,7 +46,7 @@ public class CacheConfig {
     public Cache<String, SessionUserInfo> caffeineCache() {
         return Caffeine.newBuilder()
                 // 设置最后一次访问后经过固定时间过期.
-                .expireAfterAccess(30L, TimeUnit.MINUTES)
+                .expireAfterAccess(this.expireAfterAccess, TimeUnit.HOURS)
                 // 初始的缓存空间大小
                 .initialCapacity(100)
                 // 缓存的最大条数
