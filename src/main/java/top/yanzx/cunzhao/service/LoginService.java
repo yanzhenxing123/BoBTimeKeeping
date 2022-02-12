@@ -26,6 +26,9 @@ public class LoginService {
     private TokenService tokenService;
 
     @Autowired
+    private ProfileService profileService;
+
+    @Autowired
     private UserController userController;
 
     /**
@@ -61,6 +64,8 @@ public class LoginService {
             // 如果没有用户 那么就注册
             userController.register(jsonObject);
             user = jsonObject;
+
+            profileService.setDefaultProfile(user);
             //            throw new CommonJsonException(ErrorEnum.E_10010);
 
         }

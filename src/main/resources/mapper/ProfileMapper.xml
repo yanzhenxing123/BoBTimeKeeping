@@ -33,11 +33,19 @@
 
 
 
-    <insert id="addCoin" parameterType="com.alibaba.fastjson.JSONObject">
+    <update id="addCoin" parameterType="com.alibaba.fastjson.JSONObject">
         UPDATE `profile`
         SET
             dadish_coins = dadish_coins + #{num}
         WHERE user_id = #{userId}
+    </update>
+
+
+    <insert id="setDefaultProfile" parameterType="com.alibaba.fastjson.JSONObject">
+        insert into `profile`
+        (`user_id`, `birthday`)
+        VALUES
+        (#{userId}, "2001-1-1");
     </insert>
 
 
