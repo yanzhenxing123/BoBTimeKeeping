@@ -41,12 +41,28 @@
     </update>
 
 
+
     <insert id="setDefaultProfile" parameterType="com.alibaba.fastjson.JSONObject">
         insert into `profile`
         (`user_id`, `birthday`)
         VALUES
         (#{userId}, "2001-1-1");
     </insert>
+
+    <update id="updateProfile" parameterType="com.alibaba.fastjson.JSONObject">
+        UPDATE `profile`
+        SET
+            birthday = #{birthday}
+        WHERE user_id = #{userId}
+    </update>
+
+
+    <update id="updateNickname" parameterType="com.alibaba.fastjson.JSONObject">
+        UPDATE `sys_user`
+        SET
+            nickname = #{nickname}
+        WHERE id = #{userId}
+    </update>
 
 
 </mapper>

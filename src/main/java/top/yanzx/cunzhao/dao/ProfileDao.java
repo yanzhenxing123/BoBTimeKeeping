@@ -21,8 +21,18 @@ public interface ProfileDao {
     int addCoin(JSONObject jsonObject);
 
     /**
-     * 添加萝卜币
+     * 设置默认用户信息
      */
     int setDefaultProfile(JSONObject jsonObject);
 
+    /**
+     * 修改用户信息
+     */
+    int updateProfile(JSONObject jsonObject);
+
+
+    /**
+     * 修改用户信息
+     */
+    int updateNickname(JSONObject jsonObject);
 }

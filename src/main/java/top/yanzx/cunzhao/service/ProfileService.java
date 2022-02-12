@@ -57,4 +57,16 @@ public class ProfileService {
         return CommonUtil.successJson();
     }
 
+    /**
+     * @author yanzx
+     * @date 2022/2/12
+     * @desc 增加萝卜币
+     */
+    public JSONObject updateProfile(JSONObject jsonObject) {
+        if (profileDao.updateProfile(jsonObject) + profileDao.updateNickname(jsonObject) > 0) {
+            return CommonUtil.errorJson(ErrorEnum.E_10011);
+        }
+        return CommonUtil.successJson();
+    }
+
 }

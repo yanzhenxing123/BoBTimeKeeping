@@ -48,17 +48,18 @@ public class ProfileController {
     public JSONObject addCoin(@RequestBody JSONObject requestJson) {
         CommonUtil.hasAllRequired(requestJson, "num");
         requestJson.put("userId", tokenService.getUserId());
-        System.out.println(requestJson);
         return profileService.addCoin(requestJson);
     }
 
 
-////    @RequiresPermissions("user:add")
-//    @PostMapping("/addCoin")
-//    public JSONObject addCoin(@RequestBody JSONObject requestJson) {
-//        CommonUtil.hasAllRequired(requestJson, "username, password, nickname, roleIds");
-//        return CommonUtil.successJson();
-//    }
+    @RequiresPermissions("sign:add")
+    @PostMapping("/update")
+    public JSONObject update(@RequestBody JSONObject requestJson) {
+        CommonUtil.hasAllRequired(requestJson, "birthday,nickname");
+        requestJson.put("userId", tokenService.getUserId());
+        profileService.updateProfile(requestJson);
+        return CommonUtil.successJson();
+    }
 
 
 }
