@@ -32,4 +32,14 @@
     </select>
 
 
+
+    <insert id="addCoin">
+        INSERT INTO `profile`
+            (`dadish_coins`)
+        VALUES (#{num})
+        WHERE `user_id` = #{userId}
+    </insert>
+
+
+
 </mapper>

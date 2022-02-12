@@ -1,5 +1,6 @@
 package top.yanzx.cunzhao.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.benmanes.caffeine.cache.Cache;
 import top.yanzx.cunzhao.config.exception.CommonJsonException;
 import top.yanzx.cunzhao.dao.LoginDao;
@@ -81,5 +82,27 @@ public class TokenService {
             userInfo.setPermissionList(loginDao.getAllPermissionCode());
         }
         return userInfo;
+    }
+
+    /**
+     * @author yanzx
+     * @date 2022/2/12
+     * @desc 获取用户信息，并返回userId
+     */
+    public JSONObject getUserIdParams() {
+        int userId = getUserId();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("userId", userId);
+        return jsonObject;
+    }
+
+    /**
+     * @author yanzx
+     * @date 2022/2/12
+     * @desc 获取userId
+     */
+    public int getUserId() {
+        SessionUserInfo userInfo = getUserInfo();
+        return userInfo.getUserId();
     }
 }

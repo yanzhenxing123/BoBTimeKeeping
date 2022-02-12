@@ -14,6 +14,9 @@ public interface ProfileDao {
      * 查询用户信息
      */
     JSONObject getProfileInfo(JSONObject jsonObject);
-
+    /**
+     * 添加萝卜币
+     */
+    JSONObject addCoin(JSONObject jsonObject);
 
 }

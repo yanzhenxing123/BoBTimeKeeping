@@ -35,4 +35,14 @@ public class ProfileService {
         JSONObject profileInfo = profileDao.getProfileInfo(jsonObject);
         return CommonUtil.successJson(profileInfo);
     }
+
+    public JSONObject addCoin(JSONObject jsonObject) {
+        /**
+         * @author yanzx
+         * @date 2022/2/12
+         * @desc 增加萝卜币
+         */
+        profileDao.addCoin(jsonObject);
+        return CommonUtil.successJson();
+    }
 }

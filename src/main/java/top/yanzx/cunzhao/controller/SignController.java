@@ -37,10 +37,7 @@ public class SignController {
     @RequiresPermissions("sign:add")
     @GetMapping("/create")
     public JSONObject createSign() {
-        SessionUserInfo userInfo = tokenService.getUserInfo();
-        int userId = userInfo.getUserId();
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("userId", userId);
+        JSONObject jsonObject = tokenService.getUserIdParams();
         return signService.createSign(jsonObject);
     }
 
@@ -56,10 +53,7 @@ public class SignController {
          * @return com.alibaba.fastjson.JSONObject
          *
          */
-        SessionUserInfo userInfo = tokenService.getUserInfo();
-        int userId = userInfo.getUserId();
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("userId", userId);
+        JSONObject jsonObject = tokenService.getUserIdParams();
         return signService.signNums(jsonObject);
     }
 
