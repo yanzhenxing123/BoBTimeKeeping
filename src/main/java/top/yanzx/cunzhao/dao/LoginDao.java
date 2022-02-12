@@ -17,6 +17,8 @@ public interface LoginDao {
      */
     JSONObject checkUser(@Param("username") String username, @Param("password") String password);
 
+    JSONObject checkUserByPhone(@Param("phone_number") String phone_number);
+
     SessionUserInfo getUserInfo(String username);
 
     Set<String> getAllMenu();

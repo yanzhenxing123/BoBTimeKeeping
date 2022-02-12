@@ -25,8 +25,21 @@ public class LoginController {
     @Autowired
     private SmsService smsService;
 
+
     /**
-     * 登录
+     * 登录 使用短信验证码进行登录
+     */
+    @PostMapping
+    public JSONObject login(@RequestBody JSONObject requestJson) {
+        CommonUtil.hasAllRequired(requestJson, "phone_number,message_id,code");
+        requestJson.put("username", requestJson.get("phone_number"));
+        smsService.authCode(requestJson);
+        return loginService.login(requestJson);
+    }
+
+
+    /**
+     * 登录 使用账号密码进行登录
      */
     @PostMapping("/auth")
     public JSONObject authLogin(@RequestBody JSONObject requestJson) {
@@ -35,6 +48,8 @@ public class LoginController {
 //        smsService.authCode(requestJson);
         return loginService.authLogin(requestJson);
     }
+
+
 
     /**
      * 查询当前登录用户的信息
@@ -51,4 +66,5 @@ public class LoginController {
     public JSONObject logout() {
         return loginService.logout();
     }
+
 }

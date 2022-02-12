@@ -38,7 +38,7 @@ public class UserService {
      * 添加用户
      */
     public JSONObject addUser(JSONObject jsonObject) {
-        int exist = userDao.queryExistUsername(jsonObject);
+        int exist = userDao.queryExistUsername(jsonObject) +  userDao.queryExistPhone(jsonObject);
         if (exist > 0) {
             return CommonUtil.errorJson(ErrorEnum.E_10009);
         }

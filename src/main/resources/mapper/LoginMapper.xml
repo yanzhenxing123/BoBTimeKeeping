@@ -12,6 +12,17 @@
     </select>
 
 
+    <select id="checkUserByPhone" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT      u.id userId,
+                    u.username username,
+                    u.phone_number phone_number,
+                    u.nickname nickname
+        FROM sys_user u
+        WHERE u.phone_number = #{phone_number}
+          AND u.delete_status = '1'
+    </select>
+
+
     <resultMap id="userInfo" type="top.yanzx.cunzhao.dto.session.SessionUserInfo">
         <id column="userId" property="userId"/>
         <result column="username" property="username"/>

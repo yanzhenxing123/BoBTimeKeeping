@@ -65,8 +65,8 @@
 
     <insert id="addUser" useGeneratedKeys="true" keyProperty="userId">
         INSERT INTO sys_user
-            (username, password, nickname)
-        VALUES (#{username}, #{password}, #{nickname})
+            (username, password, nickname, phone_number)
+        VALUES (#{username}, #{password}, #{nickname}, #{phone_number})
     </insert>
 
     <update id="updateUser">
@@ -196,6 +196,13 @@
         select count(0)
         from sys_user
         WHERE username = #{username}
+          AND delete_status = '1';
+    </select>
+
+    <select id="queryExistPhone" resultType="int">
+        select count(0)
+        from sys_user
+        WHERE phone_number = #{phone_number}
           AND delete_status = '1';
     </select>
 </mapper>

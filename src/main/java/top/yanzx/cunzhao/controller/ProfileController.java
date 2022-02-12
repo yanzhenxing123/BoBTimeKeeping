@@ -46,13 +46,14 @@ public class ProfileController {
     /**
      * 用户信息
      */
-    @RequiresPermissions("sign:add")
+//    @RequiresPermissions("sign:add")
     @PostMapping("/addCoin")
     public JSONObject addCoin(JSONObject requestJson) {
-        CommonUtil.hasAllRequired(requestJson, "num");
-        requestJson.put("userId", tokenService.getUserId());
-        System.out.println(requestJson);
-        return profileService.addCoin(requestJson);
+//        CommonUtil.hasAllRequired(requestJson, "num");
+//        requestJson.put("userId", tokenService.getUserId());
+//        System.out.println(requestJson);
+//        return profileService.addCoin(requestJson);
+        return CommonUtil.successJson();
     }
 
 

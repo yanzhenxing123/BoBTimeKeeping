@@ -32,6 +32,13 @@ public interface UserDao {
      */
     int queryExistUsername(JSONObject jsonObject);
 
+
+    /**
+     * 校验手机号是否已存在
+     */
+    int queryExistPhone(JSONObject jsonObject);
+
+
     /**
      * 新增用户
      */

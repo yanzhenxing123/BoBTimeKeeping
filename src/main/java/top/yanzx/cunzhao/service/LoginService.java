@@ -2,6 +2,7 @@ package top.yanzx.cunzhao.service;
 
 import com.alibaba.fastjson.JSONObject;
 import top.yanzx.cunzhao.config.exception.CommonJsonException;
+import top.yanzx.cunzhao.controller.UserController;
 import top.yanzx.cunzhao.dao.LoginDao;
 import top.yanzx.cunzhao.dto.session.SessionUserInfo;
 import top.yanzx.cunzhao.util.CommonUtil;
@@ -24,6 +25,9 @@ public class LoginService {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private UserController userController;
+
     /**
      * 登录表单提交
      */
@@ -37,8 +41,37 @@ public class LoginService {
         }
         String token = tokenService.generateToken(username);
         info.put("token", token);
+
+
+
+        return CommonUtil.successJson(info);
+
+    }
+
+
+    /**
+     * 使用短信验证码进行登录
+     */
+    public JSONObject login(JSONObject jsonObject) {
+        String phone_number = jsonObject.getString("phone_number");
+        JSONObject info = new JSONObject();
+        JSONObject user = loginDao.checkUserByPhone(phone_number);
+        if (user == null) {
+            jsonObject.put("password", "209243");
+            // 如果没有用户 那么就注册
+            userController.register(jsonObject);
+            user = jsonObject;
+            //            throw new CommonJsonException(ErrorEnum.E_10010);
+
+        }
+
+        String token = tokenService.generateToken(user.getString("username"));
+
+
+        info.put("token", token);
         return CommonUtil.successJson(info);
     }
+
 
     /**
      * 查询当前登录用户的权限等信息

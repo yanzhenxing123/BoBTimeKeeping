@@ -100,7 +100,7 @@ public class UserController {
 
     @PostMapping("/register")
     public JSONObject register(@RequestBody JSONObject requestJson) {
-        CommonUtil.hasAllRequired(requestJson, "username,password,message_id,code");
+        CommonUtil.hasAllRequired(requestJson, "username,password,message_id,code,phone_number");
         return userService.register(requestJson);
     }
 }
