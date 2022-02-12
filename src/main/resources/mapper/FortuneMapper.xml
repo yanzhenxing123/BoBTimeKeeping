@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.yanzx.cunzhao.dao.FortuneDao">
+
+<!--    <insert id="createSign" useGeneratedKeys="true" keyProperty="signId">-->
+<!--        INSERT INTO `sign_detail`-->
+<!--            (`user_id`, `sign_date`)-->
+<!--        VALUES (#{userId}, current_date)-->
+<!--    </insert>-->
+
+
+
+<!--    <select id="queryExist" resultType="int">-->
+<!--        select count(0)-->
+<!--        from `sign_detail`-->
+<!--        WHERE `user_id` = #{userId}-->
+<!--          AND `sign_date` = current_date;-->
+<!--    </select>-->
+
+
+
+    <select id="getFortune" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT *
+        FROM `xingzuo`
+        WHERE `id` >= ((SELECT MAX(`id`) FROM `xingzuo`)-(SELECT MIN(`id`) FROM `xingzuo`)) * RAND() + (SELECT MIN(`id`) FROM `xingzuo`)
+        LIMIT 1
+    </select>
+
+
+</mapper>
