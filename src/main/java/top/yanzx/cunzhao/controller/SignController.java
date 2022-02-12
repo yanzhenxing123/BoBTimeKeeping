@@ -32,7 +32,9 @@ public class SignController {
     private SignService signService;
 
     /**
-     * 签到
+     * @Author: yanzx
+     * @Date: 2022/2/12 20:00
+     * @Description: 签到
      */
     @RequiresPermissions("sign:add")
     @GetMapping("/create")
@@ -42,17 +44,14 @@ public class SignController {
     }
 
 
+    /**
+     * @Author: yanzx
+     * @Date: 2022/2/12 20:00
+     * @Description: 获取用户签到的数量
+     */
     @RequiresPermissions("sign:add")
     @GetMapping("/nums")
     public JSONObject signNums() {
-        /**
-         * 签到数量
-         * @author yanzx
-         * @date 2022/2/11
-         * @param []
-         * @return com.alibaba.fastjson.JSONObject
-         *
-         */
         JSONObject jsonObject = tokenService.getUserIdParams();
         return signService.signNums(jsonObject);
     }

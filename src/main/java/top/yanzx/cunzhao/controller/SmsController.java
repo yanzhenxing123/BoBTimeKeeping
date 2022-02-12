@@ -21,7 +21,6 @@ import java.util.Map;
 @RequestMapping("/sms")
 public class SmsController {
 
-
     @Autowired
     private zhenziSMS sms;
 
