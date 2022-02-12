@@ -96,4 +96,7 @@ public interface UserDao {
     int removeRoleAllPermission(JSONObject jsonObject);
 
 
+
+
+
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.yanzx.cunzhao.dao.ProfileDao">
+
+<!--    <insert id="createSign" useGeneratedKeys="true" keyProperty="signId">-->
+<!--        INSERT INTO `sign_detail`-->
+<!--            (`user_id`, `sign_date`)-->
+<!--        VALUES (#{userId}, current_date)-->
+<!--    </insert>-->
+
+
+
+<!--    <select id="queryExist" resultType="int">-->
+<!--        select count(0)-->
+<!--        from `sign_detail`-->
+<!--        WHERE `user_id` = #{userId}-->
+<!--          AND `sign_date` = current_date;-->
+<!--    </select>-->
+
+
+
+    <select id="getProfileInfo" resultType="com.alibaba.fastjson.JSONObject">
+        select u.id             user_id,
+               u.username       username,
+               u.nickname       nickname,
+               p.birthday       birthday,
+               p.dadish_coins   dadish_coins
+        from `sys_user` u
+            left join `profile` p on u.id = p.user_id
+        where u.id = #{userId}
+    </select>
+
+
+</mapper>
