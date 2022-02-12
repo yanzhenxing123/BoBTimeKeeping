@@ -3,10 +3,7 @@ package top.yanzx.cunzhao.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.yanzx.cunzhao.config.annotation.RequiresPermissions;
 import top.yanzx.cunzhao.dao.ProfileDao;
 import top.yanzx.cunzhao.dto.session.SessionUserInfo;
@@ -44,18 +41,24 @@ public class ProfileController {
     }
 
     /**
-     * 用户信息
+     * 添加金币接口
      */
-//    @RequiresPermissions("sign:add")
+    @RequiresPermissions("sign:add")
     @PostMapping("/addCoin")
-    public JSONObject addCoin(JSONObject requestJson) {
-//        CommonUtil.hasAllRequired(requestJson, "num");
-//        requestJson.put("userId", tokenService.getUserId());
-//        System.out.println(requestJson);
-//        return profileService.addCoin(requestJson);
-        return CommonUtil.successJson();
+    public JSONObject addCoin(@RequestBody JSONObject requestJson) {
+        CommonUtil.hasAllRequired(requestJson, "num");
+        requestJson.put("userId", tokenService.getUserId());
+        System.out.println(requestJson);
+        return profileService.addCoin(requestJson);
     }
 
+
+////    @RequiresPermissions("user:add")
+//    @PostMapping("/addCoin")
+//    public JSONObject addCoin(@RequestBody JSONObject requestJson) {
+//        CommonUtil.hasAllRequired(requestJson, "username, password, nickname, roleIds");
+//        return CommonUtil.successJson();
+//    }
 
 
 }

@@ -17,6 +17,6 @@ public interface ProfileDao {
     /**
      * 添加萝卜币
      */
-    JSONObject addCoin(JSONObject jsonObject);
+    int addCoin(JSONObject jsonObject);
 
 }

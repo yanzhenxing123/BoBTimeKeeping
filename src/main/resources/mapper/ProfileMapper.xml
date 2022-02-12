@@ -33,13 +33,12 @@
 
 
 
-    <insert id="addCoin">
-        INSERT INTO `profile`
-            (`dadish_coins`)
-        VALUES (#{num})
-        WHERE `user_id` = #{userId}
+    <insert id="addCoin" parameterType="com.alibaba.fastjson.JSONObject">
+        UPDATE `profile`
+        SET
+            dadish_coins = dadish_coins + #{num}
+        WHERE user_id = #{userId}
     </insert>
-
 
 
 </mapper>
