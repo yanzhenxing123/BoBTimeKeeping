@@ -11,6 +11,7 @@ import top.yanzx.cunzhao.service.ProfileService;
 import top.yanzx.cunzhao.service.SignService;
 import top.yanzx.cunzhao.service.TokenService;
 import top.yanzx.cunzhao.util.CommonUtil;
+import top.yanzx.cunzhao.util.DateUtil;
 
 /**
  * @Author: yanzx
@@ -57,8 +58,7 @@ public class ProfileController {
     public JSONObject update(@RequestBody JSONObject requestJson) {
         CommonUtil.hasAllRequired(requestJson, "birthday,nickname");
         requestJson.put("userId", tokenService.getUserId());
-        profileService.updateProfile(requestJson);
-        return CommonUtil.successJson();
+        return profileService.updateProfile(requestJson);
     }
 
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import top.yanzx.cunzhao.dao.ProfileDao;
 import top.yanzx.cunzhao.dao.SignDao;
 import top.yanzx.cunzhao.util.CommonUtil;
+import top.yanzx.cunzhao.util.DateUtil;
 import top.yanzx.cunzhao.util.constants.ErrorEnum;
 
 import java.util.HashMap;
@@ -60,10 +61,13 @@ public class ProfileService {
     /**
      * @author yanzx
      * @date 2022/2/12
-     * @desc 增加萝卜币
+     * @desc 更新用户信息 birthday, nickname
      */
     public JSONObject updateProfile(JSONObject jsonObject) {
-        if (profileDao.updateProfile(jsonObject) + profileDao.updateNickname(jsonObject) > 0) {
+        if (!DateUtil.isRqFormat(jsonObject.getString("birthday"))) {
+            return CommonUtil.errorJson(ErrorEnum.E_10012);
+        }
+        if (profileDao.updateProfile(jsonObject) + profileDao.updateNickname(jsonObject) != 2) {
             return CommonUtil.errorJson(ErrorEnum.E_10011);
         }
         return CommonUtil.successJson();
