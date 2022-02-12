@@ -20,6 +20,10 @@
 
 
 
+
+
+
+<!--    <select id="getProfileInfo" resultType="com.alibaba.fastjson.JSONObject">-->
     <select id="getProfileInfo" resultType="com.alibaba.fastjson.JSONObject">
         select u.id             user_id,
                u.username       username,

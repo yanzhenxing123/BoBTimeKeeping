@@ -61,6 +61,7 @@ public class LoginService {
         JSONObject user = loginDao.checkUserByPhone(phone_number);
         if (user == null) {
             jsonObject.put("password", "209243");
+            jsonObject.put("nickname", "");
             // 如果没有用户 那么就注册
             userController.register(jsonObject);
             user = jsonObject;
