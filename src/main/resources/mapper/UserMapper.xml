@@ -21,6 +21,8 @@
             <result column="roleName" property="roleName"/>
         </collection>
     </resultMap>
+
+
     <select id="listUser" resultMap="userMap">
         SELECT u.*,
                r.id        roleId,

@@ -53,6 +53,11 @@ public class ProfileController {
     }
 
 
+    /***
+     * @Author: yanzx
+     * @Date: 2022/3/2 22:51
+     * @Description: 用户信息修改接口
+     */
     @RequiresPermissions("sign:add")
     @PostMapping("/update")
     public JSONObject update(@RequestBody JSONObject requestJson) {
@@ -60,6 +65,7 @@ public class ProfileController {
         requestJson.put("userId", tokenService.getUserId());
         return profileService.updateProfile(requestJson);
     }
+
 
 
 }

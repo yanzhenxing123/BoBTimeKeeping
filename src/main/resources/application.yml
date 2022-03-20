@@ -5,6 +5,12 @@ spring:
   profiles:
     active: local
 
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
+
+
   redis:
     host: 42.192.178.84
     port: 6379
@@ -31,8 +37,19 @@ sms:
   # 5 min
   #  timeOut: 5
   codeLength: 4
-  
+
 
 cache:
   # 多少分钟后过期
   expireAfterAccess: 10080
+
+
+
+
+aliyun:
+  endPoint: oss-cn-beijing.aliyuncs.com
+  urlPrefix: http://cunzhao.oss-cn-beijing.aliyuncs.com/
+  accessKeyId: LTAI5t9cBwBHKseLcXkztKrP
+  accessKeySecret: I2kDgZFSwAedZdFVvRT5TJZY3RGeWV
+  bucketName: cunzhao
+  fileHost: files
