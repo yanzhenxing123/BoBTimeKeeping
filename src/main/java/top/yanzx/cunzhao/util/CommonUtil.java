@@ -123,7 +123,7 @@ public class CommonUtil {
         JSONObject jsonObject = request2Json(request);
         hasAllRequired(jsonObject, requiredColumns);
         return jsonObject;
-    }
+}
 
     /**
      * 验证是否含有全部必填字段

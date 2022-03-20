@@ -2,8 +2,10 @@ package top.yanzx.cunzhao.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import top.yanzx.cunzhao.config.annotation.RequiresPermissions;
 import top.yanzx.cunzhao.dao.ProfileDao;
 import top.yanzx.cunzhao.dto.session.SessionUserInfo;
@@ -65,6 +67,29 @@ public class ProfileController {
         requestJson.put("userId", tokenService.getUserId());
         return profileService.updateProfile(requestJson);
     }
+
+    /**
+     * @Author: yanzx
+     * @Date: 2022/3/20 22:11
+     * @Description: 用户头像修改
+     */
+    @RequiresPermissions("sign:add")
+    @PostMapping("/updateAvatar")
+    public JSONObject updateAvatar(@RequestParam("file") MultipartFile file) {
+        JSONObject requestJson = new JSONObject();
+        if (file == null){
+            CommonUtil.hasAllRequired(requestJson, "file");
+        }
+        requestJson.put("userId", tokenService.getUserId());
+        requestJson.put("file", file);
+        return profileService.updateAvatar(requestJson);
+//
+    }
+
+
+
+
+
 
 
 

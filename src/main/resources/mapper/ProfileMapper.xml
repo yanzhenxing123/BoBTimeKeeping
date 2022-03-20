@@ -29,7 +29,8 @@
                u.username       username,
                u.nickname       nickname,
                p.birthday       birthday,
-               p.dadish_coins   dadish_coins
+               p.dadish_coins   dadish_coins,
+               p.avatar         avatar
         from `sys_user` u
             left join `profile` p on u.id = p.user_id
         where u.id = #{userId}
@@ -66,6 +67,13 @@
         SET
             nickname = #{nickname}
         WHERE id = #{userId}
+    </update>
+
+    <update id="updateAvatar" parameterType="com.alibaba.fastjson.JSONObject">
+        UPDATE `profile`
+        SET
+            avatar = #{avatarUrl}
+        WHERE `user_id` = #{userId}
     </update>
 
 

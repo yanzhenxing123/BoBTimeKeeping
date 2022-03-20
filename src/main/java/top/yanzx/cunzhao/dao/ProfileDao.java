@@ -35,4 +35,9 @@ public interface ProfileDao {
      * 修改用户信息
      */
     int updateNickname(JSONObject jsonObject);
+
+    /**
+     * 修改用户头像
+     */
+    int updateAvatar(JSONObject jsonObject);
 }

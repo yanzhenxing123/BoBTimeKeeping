@@ -3,6 +3,9 @@ package top.yanzx.cunzhao.service;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import top.yanzx.cunzhao.dao.ProfileDao;
 import top.yanzx.cunzhao.dao.SignDao;
 import top.yanzx.cunzhao.util.CommonUtil;
@@ -23,6 +26,9 @@ public class ProfileService {
 
     @Autowired
     private ProfileDao profileDao;
+
+    @Autowired
+    private FileUploadService fileUploadService;
 
 
     /**
@@ -73,4 +79,21 @@ public class ProfileService {
         return CommonUtil.successJson();
     }
 
+
+    /**
+     * @Author: yanzx
+     * @Date: 2022/3/20 22:19
+     * @Description: 更新avatar
+     */
+    public JSONObject updateAvatar(JSONObject jsonObject) {
+        MultipartFile file = (MultipartFile) jsonObject.get("file");
+        String returnFileUrl = fileUploadService.upload(file);
+        if(returnFileUrl.equals("error")){
+            return CommonUtil.errorJson(ErrorEnum.E_30001);
+        }
+        jsonObject.remove("file");
+        jsonObject.put("avatarUrl",returnFileUrl);
+        profileDao.updateAvatar(jsonObject);
+        return CommonUtil.successJson(jsonObject);
+    }
 }
